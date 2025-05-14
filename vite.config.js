@@ -5,3 +5,6 @@ export default defineConfig({
     tailwindcss(),
   ],
 })
+export default {
+  base: 'https://squidez.github.io/'
+}
