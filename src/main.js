@@ -80,54 +80,55 @@ const labels = {
     'G': ['Chat', 'Pain Pita']}
 
 // Show the first image
-let currentImage = image_set[0];
-image_element.src = currentImage.path;
-let last_category = currentImage.category
+let current_image = image_set[0];
+image_element.src = current_image.path;
+let last_category = current_image.category
 let image_index = 1;
 
 function check_image(key) {
   if (key === 'a' || key === 'b' ) {
-    if (key === currentImage.tag) {
+    if (key === current_image.tag) {
       score++;
       score_element.textContent = score;
     }
-    currentImage = image_set[image_index];
-    console.log(currentImage);
-    image_element.src = currentImage.path;
+    current_image = image_set[image_index];
+    console.log(current_image);
+    image_element.src = current_image.path;
     //Labels the buttons
-    let category = currentImage.category;
+    let category = current_image.category;
     button_a.innerHTML = labels[category][0];
     button_b.innerHTML = labels[category][1];
     if (category != last_category) {
       cat_a.innerHTML = labels[category][0];
       cat_b.innerHTML = labels[category][1];
       open_modal(category_dial);
-      setTimeout(function() {close_modal(category_dial) }, 1000);
+      setTimeout(() => {close_modal(category_dial) }, 1000);
     }
     last_category = category
     //increment image index
     image_index++;
+    
   }
-  
+
   if (image_index === image_set.length) {
-    gameover_msg.innerHTML = `Bravo, tu as reconnu ${score} images`
-    open_modal(gameover_dial)
+    gameover_msg.innerHTML = `Bravo, tu as reconnu ${score} images`;
+    setTimeout(() => {open_modal(gameover_dial)}, 200);  
   }
 }
 
-function reset_game() {
-  score = 0;
-  score_element.textContent = score;
-  image_index = 0;
-  const new_image_set = create_image_set(images_data);
-  currentImage = new_image_set[image_index];
-  image_element.src = currentImage.path;
-  last_category = currentImage.category;
+// function reset_game() {
+//   score = 0;
+//   score_element.textContent = score;
+//   image_index = 0;
+//   const new_image_set = create_image_set(images_data);
+//   current_image = new_image_set[image_index];
+//   image_element.src = current_image.path;
+//   last_category = current_image.category;
 
-  let category = currentImage.category;
-  button_a.innerHTML = labels[category][0];
-  button_b.innerHTML = labels[category][1];
-}
+//   let category = current_image.category;
+//   button_a.innerHTML = labels[category][0];
+//   button_b.innerHTML = labels[category][1];
+// }
 
 button_a.addEventListener('click', (event) => {
   check_image('a');
@@ -147,11 +148,9 @@ document.addEventListener('keypress', (event) => {
   if (start_dial.classList.contains('hidden') != true) {
     close_modal(start_dial);
   }
-  // if (gameover_dial.classList.contains('hidden') != true) {
-  // reset_game();
-  // open_modal(start_dial);
-  // close_modal(gameover_dial);
-  // }
+  if (gameover_dial.classList.contains('hidden') != true) {
+    setTimeout(() => {location.reload()}, 1000);   
+  }
 });
 
 start_btn.addEventListener('click', (event) => {
@@ -159,9 +158,10 @@ start_btn.addEventListener('click', (event) => {
 });
 
 gameover_btn.addEventListener('click', (event) => {
-  reset_game();
-  open_modal(start_dial);
-  close_modal(gameover_dial);
+  location.reload()
+  // reset_game();
+  // open_modal(start_dial);
+  // close_modal(gameover_dial);
 });
 
 function open_modal(modal_elem) {
