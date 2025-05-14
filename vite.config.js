@@ -4,7 +4,6 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
   ],
+  base: "/Classification-mystere-unil/"
 })
-export default {
-  base: 'https://squidez.github.io/'
-}
+
