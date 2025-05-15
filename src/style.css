@@ -1,6 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
 @import "tailwindcss";
 
-/* body { 
-      font-family: Tahoma;
-      text-align: center;
-      padding: 50px;} */
+@theme {  
+      --color-backblue: #2c333b;
+      --color-mainblue: #6785b9;
+      --color-shadeblue: #1b1e3d;
+      --color-pointyellow: #fdf6b2;
+      --color-pointgray: #cccccc;
+
+      --font-ShareTech: "Share Tech", sans-serif;
+
+
+      --animate-wiggle: wiggle 10s linear infinite;  
+      @keyframes wiggle {    
+            0%,    
+            100%{
+            transform: rotate(-3deg);}
+            50% {
+            transform: rotate(3deg);}
+      }
+
+      --animate-ping: ping 1s linear;
+      @keyframes ping {
+            0% {
+                  transform: scale(1);
+                  opacity: 1;
+            }
+            100% {
+                  transform: scale(2);
+                  opacity: .5;
+            }
+      }
+}

@@ -1,5 +1,6 @@
 import './style.css'
 import images_data from './images_data.js'
+import { animate } from 'animejs';
 
 // Declaring variables for HTML Elements
 const image_element = document.getElementById('picture');
@@ -86,29 +87,36 @@ let last_category = current_image.category
 let image_index = 1;
 
 function check_image(key) {
-  if (key === 'a' || key === 'b' ) {
-    if (key === current_image.tag) {
-      score++;
-      score_element.textContent = score;
-    }
-    current_image = image_set[image_index];
-    console.log(current_image);
-    image_element.src = current_image.path;
-    //Labels the buttons
-    let category = current_image.category;
-    button_a.innerHTML = labels[category][0];
-    button_b.innerHTML = labels[category][1];
-    if (category != last_category) {
-      cat_a.innerHTML = labels[category][0];
-      cat_b.innerHTML = labels[category][1];
-      open_modal(category_dial);
-      setTimeout(() => {close_modal(category_dial) }, 1000);
-    }
-    last_category = category
-    //increment image index
-    image_index++;
-    
+  // if (key === 'a' || key === 'b' ) {
+  if (key === current_image.tag) {
+    score++;
+    score_element.textContent = score;
   }
+  
+  current_image = image_set[image_index];
+  console.log(current_image);
+  image_element.src = current_image.path;
+  //Labels the buttons
+  let category = current_image.category;
+  button_a.innerHTML = labels[category][0];
+  button_b.innerHTML = labels[category][1];
+  if (category != last_category) {
+    cat_a.innerHTML = labels[category][0];
+    cat_b.innerHTML = labels[category][1];
+    open_modal(category_dial);
+    animate( category_dial, {
+      scale: [0, 1.5],
+      opacity: [0, 0.85],
+      duration: 500,
+      easing: 'easeOutCubic'
+    });
+    setTimeout(() => {close_modal(category_dial) }, 1000);
+  }
+  last_category = category
+  //increment image index
+  image_index++;
+    
+  // }
 
   if (image_index === image_set.length) {
     gameover_msg.innerHTML = `Bravo, tu as reconnu ${score} images`;
@@ -140,25 +148,66 @@ button_b.addEventListener('click', (event) => {
 document.addEventListener('keypress', (event) => {
   const key = event.key.toLowerCase();
   if (start_dial.classList.contains('hidden')) {
-    check_image(key);
-  }
-});
 
-document.addEventListener('keypress', (event) => {
-  if (start_dial.classList.contains('hidden') != true) {
-    close_modal(start_dial);
+    if (key === 'a') {
+      
+      button_a.classList.add('animate-ping')
+      setTimeout(() => {button_a.classList.remove('animate-ping')
+      }, 50);
+
+      setTimeout(() => {check_image(key);}, 100); 
+
+    } else if (key === 'b'){
+      button_b.classList.add('animate-ping')
+      setTimeout(() => {button_b.classList.remove('animate-ping')
+      }, 50);
+
+      setTimeout(() => {check_image(key);}, 100); 
+    }
+   
   }
+
+  // Trigger Start button on key press
+  if (start_dial.classList.contains('hidden') != true) {
+    animate( start_btn, {
+        scale: [0.7, 2],
+        opacity: [1, 0.5],
+        duration: 500,
+        easing: 'easeOutCubic'
+      });
+    setTimeout(() => {close_modal(start_dial)}, 300);
+  }
+
+  // Trigger Game Over button on key press
   if (gameover_dial.classList.contains('hidden') != true) {
-    setTimeout(() => {location.reload()}, 1000);   
+    animate( gameover_btn, {
+        scale: [0.7, 2],
+        opacity: [1, 0],
+        duration: 500,
+        easing: 'easeOutCubic'
+      });
+    setTimeout(() => {location.reload()}, 300);   
   }
 });
 
 start_btn.addEventListener('click', (event) => {
-  close_modal(start_dial);
+  animate( start_btn, {
+        scale: [0.7, 2],
+        opacity: [1, 0.5],
+        duration: 500,
+        easing: 'easeOutCubic'
+      });
+    setTimeout(() => {close_modal(start_dial)}, 300); 
 });
 
 gameover_btn.addEventListener('click', (event) => {
-  location.reload()
+  animate( gameover_btn, {
+        scale: [0.7, 2],
+        opacity: [1, 0],
+        duration: 500,
+        easing: 'easeOutCubic'
+      });
+  setTimeout(() => {location.reload()}, 300);
   // reset_game();
   // open_modal(start_dial);
   // close_modal(gameover_dial);
