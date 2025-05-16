@@ -11,13 +11,13 @@
       --font-ShareTech: "Share Tech", sans-serif;
 
 
-      --animate-wiggle: wiggle 10s linear infinite;  
+      --animate-wiggle: wiggle 10s ease-in-out infinite;  
       @keyframes wiggle {    
             0%,    
             100%{
-            transform: rotate(-3deg);}
+            transform: rotate(-2deg);}
             50% {
-            transform: rotate(3deg);}
+            transform: rotate(2deg);}
       }
 
       --animate-ping: ping 1s linear;
@@ -31,4 +31,22 @@
                   opacity: .5;
             }
       }
+
+      @keyframes scrollGrid {
+      0% {
+        background-position: 0 0, 0 0;
+      }
+      100% {
+        background-position: 0 100px, 0 100px;
+      }
+    }
 }
+
+.grid-lines {
+      background-color: #2c333b;
+      background-image:
+        linear-gradient(to right, #ccc 1px, transparent 1px),
+        linear-gradient(to bottom, #ccc 1px, transparent 1px);
+      background-size: 100px 100px; /* Grid cell size */
+     animation: scrollGrid 5s linear infinite;
+    }
