@@ -800,37 +800,37 @@ const images_data = [
         "tag": "a"
     },
     {
-        "path": "images\\C\\read\\bread_01.png",
+        "path": "images\\C\\bread\\bread_01.png",
         "category": "C",
         "tag": "b"
     },
     {
-        "path": "images\\C\\read\\bread_02.png",
+        "path": "images\\C\\bread\\bread_02.png",
         "category": "C",
         "tag": "b"
     },
     {
-        "path": "images\\C\\read\\bread_03.png",
+        "path": "images\\C\\bread\\bread_03.png",
         "category": "C",
         "tag": "b"
     },
     {
-        "path": "images\\C\\read\\bread_04.png",
+        "path": "images\\C\\bread\\bread_04.png",
         "category": "C",
         "tag": "b"
     },
     {
-        "path": "images\\C\\read\\bread_05.png",
+        "path": "images\\C\\bread\\bread_05.png",
         "category": "C",
         "tag": "b"
     },
     {
-        "path": "images\\C\\read\\bread_06.png",
+        "path": "images\\C\\bread\\bread_06.png",
         "category": "C",
         "tag": "b"
     },
     {
-        "path": "images\\C\\read\\bread_07.png",
+        "path": "images\\C\\bread\\bread_07.png",
         "category": "C",
         "tag": "b"
     },

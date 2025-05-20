@@ -130,7 +130,7 @@ function check_image(key) {
       duration: 500,
       easing: 'easeOutCubic'
     });
-    setTimeout(() => {close_modal(category_dial) }, 1000);
+    setTimeout(() => {close_modal(category_dial) }, 2000);
   }
 
   // Updates the category
