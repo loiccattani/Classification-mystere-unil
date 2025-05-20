@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "homepage": "https://squidez.github.io/Classification-mystere-unil/"
+    "homepage": "https://squidez.github.io/Classification-mystere-unil/",
+    "push A": "rsync -avz -e 'ssh' ./dist/ compi@130.223.74.206:/var/www/html/Classification-mystere-unil --rsync-path='sudo rsync'",
+    "push B": "rsync -avz -e 'ssh' ./dist/ compi@130.223.74.xxx:/var/www/html/Classification-mystere-unil --rsync-path='sudo rsync'"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
@@ -18,6 +20,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.6",
     "animejs": "^4.0.2",
+    "socket.io-client": "^4.8.1",
     "tailwindcss": "^4.1.6",
     "tailwindcss-animated": "^2.0.0"
   }

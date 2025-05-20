@@ -1,6 +1,8 @@
 import './style.css'
 import images_data from './images_data.js'
 import { animate } from 'animejs';
+import { io } from 'socket.io-client';
+const socket = io(':3042');
 
 // Declaring variables for HTML Elements
 const image_element = document.getElementById('picture');
@@ -158,6 +160,15 @@ function check_image(key) {
 //   button_b.innerHTML = labels[category][1];
 // }
 
+// WS events
+socket.on('left', (arg) => {
+  console.log('left');
+  manageInput('a');
+});
+socket.on('right', (arg) => {
+  manageInput('b');
+});
+
 // Buttons events
 // A type button (Left)
 button_a.addEventListener('click', (event) => {
@@ -194,6 +205,10 @@ gameover_btn.addEventListener('click', (event) => {
 // Keyboard events
 document.addEventListener('keypress', (event) => {
   const key = event.key.toLowerCase();
+  manageInput(key);
+});
+
+function manageInput(key) {
   if (start_dial.classList.contains('hidden')) {
 
     // Trigger A button (Left)
@@ -236,7 +251,7 @@ document.addEventListener('keypress', (event) => {
       });
     setTimeout(() => {location.reload()}, 300);   
   }
-});
+}
 
 // Call to open a modal
 function open_modal(modal_elem) {
